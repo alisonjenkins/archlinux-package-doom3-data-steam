@@ -1,13 +1,13 @@
 # Maintainer: Alan Jenkins <alan.james.jenkins [at] gmail.com>
 pkgname=doom3-data-steam
 pkgver=1
-pkgrel=2
+pkgrel=3
 pkgdesc="Doom 3 data via Steam"
 arch=('any')
 provides=('doom3-data')
-depends=('steamcmd')
+makedepends=('steamcmd')
 license=('GPL')
-install='doom3-data-steam.install'
+install=doom3-data-steam.install
 url='http://store.steampowered.com/app/9050'
 
 package() {
@@ -21,11 +21,6 @@ package() {
     steamcmd +@sSteamCmdForcePlatformType windows +@ShutdownOnFailedCommand 1 +force_install_dir $doom3dir +login $steam_username "+app_update 9050 validate" +quit
 
     # Move required files to pkgdir
-    install -D -m 644 $srcdir/doom3/base/game00.pk4 $pkgdir/opt/doom3/base/game00.pk4
-    install -D -m 644 $srcdir/doom3/base/pak000.pk4 $pkgdir/opt/doom3/base/pak000.pk4
-    install -D -m 644 $srcdir/doom3/base/pak001.pk4 $pkgdir/opt/doom3/base/pak001.pk4
-    install -D -m 644 $srcdir/doom3/base/pak002.pk4 $pkgdir/opt/doom3/base/pak002.pk4
-    install -D -m 644 $srcdir/doom3/base/pak003.pk4 $pkgdir/opt/doom3/base/pak003.pk4
-    install -D -m 644 $srcdir/doom3/base/pak004.pk4 $pkgdir/opt/doom3/base/pak004.pk4
+    mkdir -p $pkgdir/opt/doom3/base/
+    install -D -m 644 $srcdir/doom3/base/*.pk4 $pkgdir/opt/doom3/base/
 }
-
