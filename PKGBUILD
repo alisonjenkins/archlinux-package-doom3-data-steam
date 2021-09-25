@@ -6,7 +6,7 @@ pkgdesc="Doom 3 data via Steam"
 arch=('any')
 provides=('doom3-data')
 makedepends=('steamcmd')
-license=('GPL')
+license=('custom')
 install=doom3-data-steam.install
 url='http://store.steampowered.com/app/9050'
 
